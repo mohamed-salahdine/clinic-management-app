@@ -45,7 +45,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         // Medical Records
         Route::post('/patients/{patient}/medical-records', [\App\Http\Controllers\Doctor\MedicalRecordController::class, 'store'])->name('medical-records.store');
+        Route::post('/patients/{patient}/prescriptions', [\App\Http\Controllers\Doctor\PrescriptionController::class, 'store'])->name('prescriptions.store');
     });
+
 
     // PATIENT PORTAL
     Route::middleware(['role:patient'])->prefix('patient')->name('patient.')->group(function () {

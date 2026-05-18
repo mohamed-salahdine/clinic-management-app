@@ -25,7 +25,18 @@ class PatientController extends Controller
 
     public function show(Request $request, Patient $patient)
     {
-        $patient->load(['user', 'medicalRecords.doctor.user']);
+        $doctorId = $request->user()->doctor->id;
+
+        // Load medical records, past prescriptions, and ONLY appointments with THIS doctor
+        $patient->load([
+            'user',
+            'medicalRecords.doctor.user',
+            'prescriptions.items',
+            'prescriptions.doctor.user',
+            'appointments' => function ($query) use ($doctorId) {
+                $query->where('doctor_id', $doctorId)->orderBy('appointment_date', 'desc');
+            }
+        ]);
 
         return Inertia::render('Doctor/Patients/Show', [
             'patient' => $patient

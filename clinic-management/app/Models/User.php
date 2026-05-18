@@ -41,4 +41,14 @@ class User extends Authenticatable
             'is_active' => 'boolean',
         ];
     }
+
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
 }

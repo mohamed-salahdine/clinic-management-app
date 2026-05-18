@@ -29,6 +29,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // ADMIN PORTAL
     Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/appointments', [\App\Http\Controllers\Admin\AppointmentController::class, 'index'])->name('appointments.index');
     });
 
     // DOCTOR PORTAL

@@ -38,7 +38,7 @@ export default function AdminLayout({
                         Patients
                     </Link>
                     <Link
-                        href="#"
+                        href={route("admin.appointments.index")}
                         className="block px-4 py-2 rounded hover:bg-slate-700"
                     >
                         Appointments

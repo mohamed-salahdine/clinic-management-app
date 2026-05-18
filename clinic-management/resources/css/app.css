@@ -1,7 +1,1 @@
 @import "tailwindcss";
-
-/* We can define custom theme variables here later */
-@theme {
-    --color-primary-500: #0ea5e9;
-    --color-primary-600: #0284c7;
-}

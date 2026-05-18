@@ -41,9 +41,12 @@ export default function Index({ appointments }: Props) {
                     <h2 className="text-lg font-medium text-gray-900">
                         All Appointments
                     </h2>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">
+                    <Link
+                        href={route("admin.appointments.create")}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition"
+                    >
                         + New Appointment
-                    </button>
+                    </Link>
                 </div>
 
                 <div className="overflow-x-auto">

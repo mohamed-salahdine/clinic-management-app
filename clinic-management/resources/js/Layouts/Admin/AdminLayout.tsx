@@ -20,7 +20,7 @@ export default function AdminLayout({
                 </div>
                 <nav className="flex-1 p-4 space-y-2">
                     <Link
-                        href="#"
+                        href={route("admin.dashboard")}
                         className="block px-4 py-2 rounded bg-slate-800 hover:bg-slate-700"
                     >
                         Dashboard
@@ -42,6 +42,12 @@ export default function AdminLayout({
                         className="block px-4 py-2 rounded hover:bg-slate-700"
                     >
                         Appointments
+                    </Link>
+                    <Link
+                        href={route("admin.invoices.index")}
+                        className="block px-4 py-2 rounded hover:bg-slate-700"
+                    >
+                        Invoices
                     </Link>
                 </nav>
             </aside>

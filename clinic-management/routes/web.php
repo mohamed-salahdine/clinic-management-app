@@ -37,7 +37,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // DOCTOR PORTAL
     Route::middleware(['role:doctor'])->prefix('doctor')->name('doctor.')->group(function () {
-        Route::get('/dashboard', [DoctorDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [\App\Http\Controllers\Doctor\DashboardController::class, 'index'])->name('dashboard');
+
+        // Patient Management
+        Route::get('/patients', [\App\Http\Controllers\Doctor\PatientController::class, 'index'])->name('patients.index');
+        Route::get('/patients/{patient}', [\App\Http\Controllers\Doctor\PatientController::class, 'show'])->name('patients.show');
+
+        // Medical Records
+        Route::post('/patients/{patient}/medical-records', [\App\Http\Controllers\Doctor\MedicalRecordController::class, 'store'])->name('medical-records.store');
     });
 
     // PATIENT PORTAL

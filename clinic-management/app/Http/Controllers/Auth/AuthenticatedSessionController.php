@@ -35,7 +35,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = $request->user();
 
-        // Role-based redirection
+        // THIS IS THE CRUCIAL PART FOR REDIRECTION
         if ($user->hasRole('admin')) {
             return redirect()->route('admin.dashboard');
         } elseif ($user->hasRole('doctor')) {
@@ -44,7 +44,6 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('patient.dashboard');
         }
 
-        // Fallback
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

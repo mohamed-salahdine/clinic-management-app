@@ -19,6 +19,7 @@ class AppointmentBookingTest extends TestCase
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         $adminRole = Role::create(['name' => 'admin']);
 
+        /** @var \App\Models\User $admin */
         $admin = User::factory()->create();
         $admin->assignRole($adminRole);
 

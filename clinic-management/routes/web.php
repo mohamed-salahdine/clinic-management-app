@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Doctor\DashboardController as DoctorDashboardController;
 use App\Http\Controllers\Patient\DashboardController as PatientDashboardController;
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -17,8 +19,19 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+Route::get('/dashboard', function (Request $request) {
+    /** @var \App\Models\User $user */
+    $user = $request->user();
+
+    if ($user && $user->hasRole('admin')) {
+        return redirect()->route('admin.dashboard');
+    } elseif ($user && $user->hasRole('doctor')) {
+        return redirect()->route('doctor.dashboard');
+    } elseif ($user && $user->hasRole('patient')) {
+        return redirect()->route('patient.dashboard');
+    }
+
+    abort(403, 'Unauthorized action.');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -55,6 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // PATIENT PORTAL
     Route::middleware(['role:patient'])->prefix('patient')->name('patient.')->group(function () {
         Route::get('/dashboard', [PatientDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/records', [\App\Http\Controllers\Patient\RecordController::class, 'index'])->name('records');
     });
 });
 

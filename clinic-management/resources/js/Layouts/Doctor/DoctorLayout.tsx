@@ -18,7 +18,7 @@ export default function DoctorLayout({
                 <div className="p-4 text-2xl font-bold border-b border-teal-800">
                     Doctor Portal
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
+                <nav className="flex-1 p-4 flex flex-col space-y-2">
                     <Link
                         href={route("doctor.dashboard")}
                         className="block px-4 py-2 rounded hover:bg-teal-800"
@@ -30,6 +30,17 @@ export default function DoctorLayout({
                         className="block px-4 py-2 rounded hover:bg-teal-800"
                     >
                         My Patients
+                    </Link>
+
+                    <div className="flex-1"></div>
+
+                    <Link
+                        href={route("logout")}
+                        method="post"
+                        as="button"
+                        className="block w-full text-left px-4 py-2 rounded text-red-200 hover:bg-teal-800 hover:text-red-100"
+                    >
+                        Log Out
                     </Link>
                 </nav>
             </aside>

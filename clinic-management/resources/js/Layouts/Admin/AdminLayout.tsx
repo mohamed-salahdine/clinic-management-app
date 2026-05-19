@@ -18,7 +18,7 @@ export default function AdminLayout({
                 <div className="p-4 text-2xl font-bold border-b border-slate-800">
                     Clinic Admin
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
+                <nav className="flex-1 p-4 flex flex-col space-y-2">
                     <Link
                         href={route("admin.dashboard")}
                         className="block px-4 py-2 rounded bg-slate-800 hover:bg-slate-700"
@@ -48,6 +48,18 @@ export default function AdminLayout({
                         className="block px-4 py-2 rounded hover:bg-slate-700"
                     >
                         Invoices
+                    </Link>
+
+                    {/* Spacer to push logout to the bottom if needed, or just keep it below */}
+                    <div className="flex-1"></div>
+
+                    <Link
+                        href={route("logout")}
+                        method="post"
+                        as="button"
+                        className="block w-full text-left px-4 py-2 rounded text-red-400 hover:bg-slate-800 hover:text-red-300"
+                    >
+                        Log Out
                     </Link>
                 </nav>
             </aside>

@@ -69,6 +69,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['role:patient'])->prefix('patient')->name('patient.')->group(function () {
         Route::get('/dashboard', [PatientDashboardController::class, 'index'])->name('dashboard');
         Route::get('/records', [\App\Http\Controllers\Patient\RecordController::class, 'index'])->name('records');
+        Route::post('/notifications/{id}/read', [\App\Http\Controllers\Patient\NotificationController::class, 'markAsRead'])->name('notifications.read');
     });
 });
 
